@@ -10,6 +10,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // API Routes
+const patientsRoutes = require("./routes/patients");
+app.use(patientsRoutes);
+
 app.get("/", (req, res) => {
   res.send("Ok");
 });
@@ -19,7 +22,7 @@ mongoose.connect(
   process.env.DB_CONNECTION,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => {
-    console.log("connected to db");
+    console.log("Database connection successful");
   }
 );
 
