@@ -47,19 +47,24 @@ router.get("/api/patients/:patientId", async (req, res) => {
 // Update a specific patient
 router.patch("/api/patients/:patientId", async (req, res) => {
   try {
-    const updatedPatient = await Patients.updateOne(
-      { _id: req.params.postId },
-      {
-        $set: {
-          patientName: req.body.patientName,
-          patientHeight: req.body.patientHeight,
-          patientWeight: req.body.patientWeight,
-          patientVisits: req.body.patientVisits,
-          patientLastVisit: req.body.patientLastVisit
-        }
-      }
-    );
+    const updatedPatient = await Patients.findById(req.params.patientId);
+    updatedPatient.patientName = req.body.patientName;
+    updatedPatient.patientHeight = req.body.patientHeight;
+    updatedPatient.patientWeight = req.body.patientWeight;
+    await updatedPatient.save();
     res.json(updatedPatient);
+  } catch (err) {
+    res.json({ msg: err });
+  }
+});
+
+// Delete a specific patient
+router.delete("/api/patients/:patientId", async (req, res) => {
+  try {
+    const removedPatient = await Patients.deleteOne({
+      _id: req.params.patientId
+    });
+    res.json(removedPatient);
   } catch (err) {
     res.json({ msg: err });
   }

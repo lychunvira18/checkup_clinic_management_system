@@ -6,11 +6,11 @@ const PatientSchema = mongoose.Schema({
     required: true
   },
   patientHeight: {
-    type: String,
+    type: Number,
     required: true
   },
   patientWeight: {
-    type: String,
+    type: Number,
     required: true
   },
   patientVisits: {
