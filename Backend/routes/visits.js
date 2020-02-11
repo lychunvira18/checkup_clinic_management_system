@@ -24,4 +24,53 @@ router.post("/api/visits/", async (req, res) => {
   }
 });
 
+// Gets all visits
+router.get("/api/visits/", async (req, res) => {
+  try {
+    const visits = await Visits.find();
+    res.json(visits);
+  } catch (err) {
+    res.json({
+      msg: err
+    });
+  }
+});
+
+// Get a specific visit
+router.get("/api/visits/:visitId", async (req, res) => {
+  try {
+    const visit = await Visits.findById(req.params.visitId);
+    res.json(visit);
+  } catch (err) {
+    res.json({
+      msg: err
+    });
+  }
+
+// Update a specific patient
+// router.patch("/api/visits/:visitId", async (req, res) => {
+//   try {
+//     const updatedVisit = await Visits.findById(req.params.patientId);
+//     updatedVisit.patientName = req.body.patientName;
+//     updatedPatient.patientHeight = req.body.patientHeight;
+//     updatedPatient.patientWeight = req.body.patientWeight;
+//     await updatedPatient.save();
+//     res.json(updatedPatient);
+//   } catch (err) {
+//     res.json({ msg: err });
+//   }
+// });
+
+// Delete a specific patient
+router.delete("/api/visits/:visitId", async (req, res) => {
+  try {
+    const removedVisit = await Visits.deleteOne({
+      _id: req.params.visitId
+    });
+    res.json(removedVisit);
+  } catch (err) {
+    res.json({ msg: err });
+  }
+});
+
 module.exports = router;
