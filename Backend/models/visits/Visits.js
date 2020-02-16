@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 
 const VisitSchema = mongoose.Schema({
-  patientId,
+  patientId: {
+    type: String,
+    required: true
+  },
   patientName: {
     type: String,
     required: true
@@ -21,10 +24,10 @@ const VisitSchema = mongoose.Schema({
   patientMedications: {
     type: Array,
     default: []
-  },
-  patientNextVisitDate: {
-    type: Date
   }
+  // patientNextVisitDate: {
+  //   type: Date
+  // }
 });
 
 module.exports = mongoose.model("Visits", VisitSchema);
