@@ -21,7 +21,7 @@ router.post("/api/patients/", async (req, res) => {
 });
 
 // Gets all patients
-router.get("/api/patients/", async (req, res) => {
+router.get("/api/patients", async (req, res) => {
   try {
     const patients = await Patients.find();
     res.json(patients);
