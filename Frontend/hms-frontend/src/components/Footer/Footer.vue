@@ -1,9 +1,5 @@
 <template>
     <v-footer color="primary">
-        <v-row
-            justify="center"
-            no-gutters
-            >
             <v-col
                 class="primary py-4 text-center white--text"
                 cols="12"
@@ -21,7 +17,6 @@
                     </v-icon>
                 </v-btn>
             </v-col>
-        </v-row>
     </v-footer>
 </template>
 

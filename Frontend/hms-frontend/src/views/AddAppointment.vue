@@ -10,9 +10,9 @@
                         {{ formatDate() }}
                     </v-list-item-subtitle>
                 </v-list-item-content>
-                <v-list-item-actions>
+                <v-list-item-action>
                     <v-btn outlined @click="getPatients">Refresh Patients</v-btn>
-                </v-list-item-actions>
+                </v-list-item-action>
             </v-list-item>
             <v-card-text>
                  <v-autocomplete
@@ -21,7 +21,6 @@
                     label="Patient"
                     item-text="patientName"
                     item-value="_id"
-                    @keyup.enter="debug(visitPatientId)"
                     >
                     <template v-slot:item="props">
                         {{ props.item.patientName }}

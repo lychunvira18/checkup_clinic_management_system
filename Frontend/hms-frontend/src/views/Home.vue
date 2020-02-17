@@ -19,6 +19,7 @@
 <script>
 import axios from "axios"
 import { mapState } from "vuex"
+import moment from "moment"
 
 import DashboardStats from "../components/Dashboard/DashboardStats"
 import DashboardAppointmentsLineChart from "../components/Dashboard/DashboardAppointmentsLineChart"
@@ -34,20 +35,56 @@ export default {
     methods: {
         // Get all patients
         async getPatients() {
-            axios.get("http://localhost:5000/api/patients/").then(res => this.$store.commit('getPatients', res.data)).catch(err => console.log(err))
+            axios.get("http://localhost:5000/api/patients/").then(res => {
+                this.$store.commit('getPatients', res.data)
+                this.getPatientsStat()
+            }).catch(err => console.log(err))
         },
 
         // Get all visits
         async getVisits(){
-            axios.get("http://localhost:5000/api/visits/").then(res => this.$store.commit('getVisits', res.data)).catch(err => console.log(err))
+            axios.get("http://localhost:5000/api/visits/").then(res => {
+                this.$store.commit('getVisits', res.data)
+                this.getDates()
+            }).catch(err => console.log(err))
+        },
+
+        // Get dates for appointments per day
+        getDates() {
+            const dates = new Object()
+            this.visits.forEach(x => {
+                if (moment(x.patientVisitDate).format("YYYY-MM-DD") in dates) {
+                    dates[`${moment(x.patientVisitDate).format("YYYY-MM-DD")}`] += 1
+                } else {
+                    dates[`${moment(x.patientVisitDate).format("YYYY-MM-DD")}`] = 1
+                }
+            })
+            this.$store.commit('getAppointmentStats', dates)
+        },
+
+        // Get new patients in the past week
+        getPatientsStat() {
+            const week = new Object()
+            for (let i = 0; i < 7; i++) {
+                week[`${moment().subtract(i, "days").format("ddd")}`] = 0
+                this.patients.forEach(x => {
+                    if (moment(x.patientLastVisit).format("YYYY-MM-DD") === moment().subtract(i, "days").format("YYYY-MM-DD")) {
+                        week[`${moment().subtract(i, "days").format("ddd")}`] += 1
+                    }
+                })
+            }
+            const arrayWeek = Object.entries(week).map(([k, v]) => ([k, v]))
+            arrayWeek.reverse()
+            this.$store.commit("getNewPatients", arrayWeek)
         }
     },
     computed: {
-        ...mapState(["visits"])
+        ...mapState(["appointmentStats", "visits", "patients", "newPatientStats"])
     },
     created() {
         this.getPatients()
         this.getVisits()
+        
     }
 }
 </script>

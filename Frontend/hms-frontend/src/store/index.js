@@ -8,7 +8,9 @@ export default new Vuex.Store({
     patients: [],
     visits: [],
     inventory: [],
-    appointment: {}
+    appointment: {},
+    appointmentStats: {},
+    newPatientStats: {}
   },
   mutations: {
     // Gets all patients
@@ -60,7 +62,16 @@ export default new Vuex.Store({
     editAppointment(state, id) {
       const index = state.visits.findIndex((x => x._id === id))
       state.visits = [...state.visits.slice(0, index), state.appointment, ...state.visits.slice(index + 1)]
-      
+    },
+
+    // Get appointment stats
+    getAppointmentStats(state, stats) {
+      state.appointmentStats = stats
+    },
+
+    // Get patient stats per week
+    getNewPatients(state, stats) {
+      state.newPatientStats = stats
     }
   },
   actions: {
