@@ -1,12 +1,16 @@
 <template>
   <v-container>
-      
+      <InventoryDatatable />
   </v-container>
 </template>
 
 <script>
-export default {
+import InventoryDatatable from "../components/Inventory/InventoryDatatable"
 
+export default {
+    components: {
+        InventoryDatatable
+    }
 }
 </script>
 

@@ -49,6 +49,13 @@ export default {
             }).catch(err => console.log(err))
         },
 
+        // Get all items in invenotry
+        async getInventory(){
+            axios.get("http://localhost:5000/api/inventory/").then(res => {
+                this.$store.commit("getInventory", res.data)
+            }).catch(err => console.log(err))
+        },
+
         // Get dates for appointments per day
         getDates() {
             const dates = new Object()
@@ -79,12 +86,12 @@ export default {
         }
     },
     computed: {
-        ...mapState(["appointmentStats", "visits", "patients", "newPatientStats"])
+        ...mapState(["appointmentStats", "visits", "patients", "newPatientStats", "inventory"])
     },
     created() {
         this.getPatients()
         this.getVisits()
-        
+        this.getInventory()
     }
 }
 </script>

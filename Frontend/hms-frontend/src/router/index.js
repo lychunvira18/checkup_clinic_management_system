@@ -7,6 +7,8 @@ import Appointments from "../views/Appointments"
 import Appointment from "../views/Appointment"
 import AddAppointment from "../views/AddAppointment"
 import Visits from "../views/Visits"
+import Inventory from "../views/Inventory"
+import Billing from "../views/Billing"
 
 Vue.use(VueRouter)
 
@@ -40,6 +42,16 @@ const routes = [
     path: "/visits",
     name: "Visits",
     component: Visits
+  },
+  {
+    path: "/inventory",
+    name: "Inventory",
+    component: Inventory
+  },
+  {
+    path: "/billing",
+    name: "Billing",
+    component: Billing
   }
 ]
 

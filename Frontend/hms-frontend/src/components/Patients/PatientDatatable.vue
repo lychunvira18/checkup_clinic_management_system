@@ -23,12 +23,16 @@
                 :search="patientSearch"
             >
                 <template v-slot:item="props">
-                    <tr @click="onPatientClick(props.item)">
+                    <tr>
                         <td>{{ props.item.patientName }}</td>
                         <td>{{ props.item.patientWeight }}</td>
                         <td>{{ props.item.patientHeight }}</td>
                         <td>{{ formatLastVisit(props.item.patientLastVisit) }}</td>
                         <td>
+                            <v-btn outlined small @click="onPatientClick(props.item)" class="mr-2">
+                                <v-icon left>mdi-account-edit-outline</v-icon>
+                                Edit
+                            </v-btn>
                             <v-btn outlined small @click="deletePatient(props.item._id)">
                                 <v-icon left>mdi-close</v-icon>
                                 Delete
@@ -76,7 +80,7 @@ export default {
             {text: "Patient Weight", value: "patientWeight"},
             {text: "Patient Height", value: "patientHeight"},
             {text: "Patient Last Visit", value: "patientLastVisit"},
-            {text: "Delete Patient"}
+            {text: "Settings"}
         ],
         editPatientDialog: false,
         patientId: "",

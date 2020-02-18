@@ -72,7 +72,22 @@ export default new Vuex.Store({
     // Get patient stats per week
     getNewPatients(state, stats) {
       state.newPatientStats = stats
-    }
+    },
+
+    // Get all inventory
+    getInventory(state, items) {
+      state.inventory = items
+    },
+
+    // Add item to inventory
+    addItemInventory(state, item) {
+      state.inventory.push(item)
+    },
+
+    // Delete an item
+    deleteInventoryItem(state, id) {
+      state.inventory = state.inventory.filter(x => x._id !== id)
+    },
   },
   actions: {
   },
