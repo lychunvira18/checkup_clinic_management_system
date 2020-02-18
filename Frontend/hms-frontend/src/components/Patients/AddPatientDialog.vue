@@ -5,7 +5,7 @@
             width= "800px"
             >
             <v-card>
-                <v-card-title primary-title>
+                <v-card-title>
                 Add patient
                 </v-card-title>
                 <v-card-text>
