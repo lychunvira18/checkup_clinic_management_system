@@ -7,15 +7,6 @@ require("dotenv/config");
 const app = express();
 
 // Middleware
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", process.env.FRONT_END);
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
-//   next();
-// });
 app.use(cors())
 
 // Body Parser

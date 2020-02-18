@@ -6,15 +6,17 @@ const ItemSchema = mongoose.Schema({
     required: true
   },
   productCategory: {
-      type: String,
-      required: true
-  },
-  productBatch: {
-      type: Array
+    type: String,
+    required: true
   },
   productStocks: {
-      type: Number
+    type: Number,
+    required: true
+  },
+  productPrice: {
+    type: Number,
+    required: true
   }
 });
 
-module.exports = mongoose.model("Inventory", ItemSchema);
+module.exports = mongoose.model("Inventories", ItemSchema);
