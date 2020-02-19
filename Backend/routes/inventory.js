@@ -10,9 +10,9 @@ router.get("/api/inventory/", async (req, res) => {
     } catch (err) {
       res.json({
         msg: err
-      });
-    }
-  });
+    });
+  }
+});
 
 // Adds a product
 router.post("/api/inventory/", async (req, res) => {

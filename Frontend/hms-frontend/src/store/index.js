@@ -8,6 +8,7 @@ export default new Vuex.Store({
     patients: [],
     visits: [],
     inventory: [],
+    billings: [],
     appointment: {},
     appointmentStats: {},
     newPatientStats: {}
@@ -88,6 +89,16 @@ export default new Vuex.Store({
     deleteInventoryItem(state, id) {
       state.inventory = state.inventory.filter(x => x._id !== id)
     },
+
+    // Get all billings
+    getBillings(state, billings) {
+      state.billings = billings
+    },
+
+    // Delete billing
+    deleteBilling(state, id) {
+      state.billings = state.billings.filter(x => x._id !== id)
+    }
   },
   actions: {
   },

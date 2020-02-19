@@ -15,7 +15,7 @@
                 </v-list-item-action>
             </v-list-item>
             <v-card-text>
-                 <v-autocomplete
+                <v-autocomplete
                     v-model="visitPatientId"
                     :items="patients"
                     label="Patient"
