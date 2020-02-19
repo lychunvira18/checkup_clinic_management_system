@@ -7,6 +7,10 @@
 ![Checkup+ Homepage](https://i.imgur.com/4KzlVf9.png)
 
 ## Setup
+Installing all dependencies
+```sh
+npm install
+```
 
 Frontend:
 
