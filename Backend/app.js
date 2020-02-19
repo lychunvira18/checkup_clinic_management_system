@@ -23,6 +23,9 @@ app.use('/', visitsRoutes)
 const inventoryRoutes = require("./routes/inventory")
 app.use('/', inventoryRoutes)
 
+const billingRoutes = require("./routes/billing")
+app.use('/', billingRoutes)
+
 app.get("/", (req, res) => {
   res.send("Ok");
 });

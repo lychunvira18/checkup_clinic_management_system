@@ -9,8 +9,6 @@
             </v-col>
             <v-col cols="4">
                 <DashboardNewPatientsColumnChart />
-                <DashboardNewPatientsColumnChart />
-                <DashboardNewPatientsColumnChart />
             </v-col>
         </v-row>
     </v-container>
@@ -83,15 +81,22 @@ export default {
             const arrayWeek = Object.entries(week).map(([k, v]) => ([k, v]))
             arrayWeek.reverse()
             this.$store.commit("getNewPatients", arrayWeek)
+        },
+
+        // Get all billings
+        async getBillings() {
+            axios.get("http://localhost:5000/api/billing/").then(res => this.$store.commit("getBillings", res.data))
+            .catch(err => console.log(err))
         }
     },
     computed: {
-        ...mapState(["appointmentStats", "visits", "patients", "newPatientStats", "inventory"])
+        ...mapState(["appointmentStats", "visits", "patients", "newPatientStats", "inventory", "billings"])
     },
     created() {
         this.getPatients()
         this.getVisits()
         this.getInventory()
+        this.getBillings()
     }
 }
 </script>

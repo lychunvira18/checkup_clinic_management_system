@@ -9,6 +9,7 @@ import AddAppointment from "../views/AddAppointment"
 import Visits from "../views/Visits"
 import Inventory from "../views/Inventory"
 import Billing from "../views/Billing"
+import AddBilling from "../views/AddBilling"
 
 Vue.use(VueRouter)
 
@@ -52,6 +53,11 @@ const routes = [
     path: "/billing",
     name: "Billing",
     component: Billing
+  },
+  {
+    path: "/billing/add",
+    name: "New Billing",
+    component: AddBilling
   }
 ]
 

@@ -1,48 +1,36 @@
 <template>
     <v-row>
-        <v-col cols="3" v-for="(stat, i) in dashboardStatus" :key="i">
-            <v-card>
-                <v-img
-                    :style="`background-color: ${stat.color}`"
-                    class="white--text align-end"
-                    gradient="to right, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                    height="150px"
-                    >
-                    <v-card-title v-text="stat.name" class="subtitle-1"></v-card-title>
-                    <v-card-subtitle class="white--text display-2">{{ stat.name === 'Earnings' ? '$' : '' }} {{stat.number}}</v-card-subtitle>
-                </v-img>
-            </v-card>
+        <v-col cols="3">
+            <DashboardStatThumbnail Title="New Patients This Week" :Stats="newPatientStats.map(x => x[1]).reduce((x, y) => x + y)" Color="blue lighten-3" />
+        </v-col>
+        <v-col cols="3">
+            <DashboardStatThumbnail Title="Total Patients" :Stats="patients.length" Color="blue lighten-2" />
+        </v-col>
+        <v-col cols="3">
+            <DashboardStatThumbnail Title="Total Appointments" :Stats="visits.length" Color="blue lighten-1" />
+        </v-col>
+        <v-col cols="3">
+            <DashboardStatThumbnail Title="Earnings" :Stats="billings.map(x => x.billingGrandTotal ).reduce((x, y) => x + y)" Color="blue" />
         </v-col>
     </v-row>
 </template>
 
 <script>
+import { mapState } from "vuex"
+
+import DashboardStatThumbnail from "./DashboardStatThumbnail"
+
 export default {
     name: "DashboardStats",
+    components: {
+        DashboardStatThumbnail
+    },
     data: () => ({
-        dashboardStatus: [
-            {
-                name: "New Patients",
-                number: 12,
-                color: "#336e7b"
-            },
-            {
-                name: "Visits Today",
-                number: 4,
-                color: "#2574a9"
-            },
-            {
-                name: "Visits This Week",
-                number: 32,
-                color: "#446cb3"
-            },
-            {
-                name: "Earnings",
-                number: 3482,
-                color: "#52b3d9"
-            }
-        ]
-    })
+        
+    }),
+    computed: {
+        ...mapState(["billings", "newPatientStats", "appointmentStats", "patients", "visits"])
+    }
 }
 </script>
 
