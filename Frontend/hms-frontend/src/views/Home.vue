@@ -47,7 +47,7 @@ export default {
             }).catch(err => console.log(err))
         },
 
-        // Get all items in invenotry
+        // Get all items in inventory
         async getInventory(){
             axios.get("http://localhost:5000/api/inventory/").then(res => {
                 this.$store.commit("getInventory", res.data)
